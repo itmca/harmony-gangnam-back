@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { MainController } from './main/main.controller';
 
-@Module({})
+@Module({
+  controllers: [MainController]
+})
 export class ManitoModule {}
