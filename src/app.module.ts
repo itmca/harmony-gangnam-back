@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TestModule } from './test/test.module';
+import { LinkModule } from './link/link.module';
+import { ManitoModule } from './manito/manito.module';
 
 @Module({
-  imports: [TestModule],
+  imports: [LinkModule, ManitoModule],
   controllers: [AppController],
   providers: [AppService],
 })
