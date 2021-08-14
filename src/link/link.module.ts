@@ -1,4 +1,13 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Link, LinkSchema } from './schemas/link.schema';
 
-@Module({})
+@Module({
+  imports: [
+    MongooseModule.forFeature(
+      [{ name: Link.name, schema: LinkSchema }],
+      'link',
+    ),
+  ],
+})
 export class LinkModule {}
