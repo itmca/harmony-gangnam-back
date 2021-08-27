@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { MainController } from './main/main.controller';
+import { AdminController } from './admin/admin.controller';
+import { ParticipantController } from './participant/participant.controller';
 
 @Module({
-  controllers: [MainController]
+  controllers: [AdminController, ParticipantController],
 })
 export class ManitoModule {}
