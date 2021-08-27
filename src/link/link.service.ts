@@ -3,13 +3,19 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Link, LinkDocument } from './schema/link.schema';
 
+export interface LinkService {
+  create(link: Map<string, string>): Promise<string>;
+  findOne(_id: string): Promise<Link>;
+}
+
 @Injectable()
-export class LinkService {
+export class LinkServiceImpl {
   constructor(@InjectModel(Link.name) private linkModel: Model<LinkDocument>) {}
 
-  async create(link: Link): Promise<Link> {
-    const createLink = new this.linkModel(link);
-    return createLink.save();
+  async create(info: Map<string, string>): Promise<string> {
+    const linkDocument = new this.linkModel({ info });
+    const createdLink = await linkDocument.save();
+    return createdLink._id;
   }
 
   async findOne(_id: string): Promise<Link> {

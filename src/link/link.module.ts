@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Link, LinkSchema } from './schema/link.schema';
 import { LinkController } from './link.controller';
-import { LinkService } from './link.service';
+import { LinkServiceImpl } from './link.service';
 
 @Module({
   imports: [
@@ -11,7 +11,12 @@ import { LinkService } from './link.service';
       'link',
     ),
   ],
-  providers: [LinkService],
+  providers: [
+    {
+      provide: 'LinkService',
+      useClass: LinkServiceImpl,
+    },
+  ],
   controllers: [LinkController],
 })
 export class LinkModule {}

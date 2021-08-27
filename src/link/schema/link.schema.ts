@@ -6,9 +6,6 @@ export type LinkDocument = Link & Document;
 @Schema()
 export class Link {
   @Prop()
-  _id: string;
-
-  @Prop()
   info: Types.Map<string>;
 }
 
