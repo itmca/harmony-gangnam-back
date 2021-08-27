@@ -1,6 +1,6 @@
 import { MongooseModule } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Link, LinkSchema } from '../schemas/link.schema';
+import { Link, LinkSchema } from './schema/link.schema';
 import { LinkService } from './link.service';
 
 describe('LinkService', () => {
