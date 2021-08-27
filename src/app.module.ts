@@ -9,8 +9,8 @@ import { ManitoModule } from './manito/manito.module';
   imports: [
     LinkModule,
     ManitoModule,
-    MongooseModule.forRoot('mongodb://localhost/link', {
-      connectionName: 'link',
+    MongooseModule.forRoot('mongodb://localhost/manito', {
+      connectionName: 'manito',
     }),
   ],
   controllers: [AppController],

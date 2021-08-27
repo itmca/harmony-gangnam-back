@@ -8,7 +8,7 @@ import { LinkServiceImpl } from './link.service';
   imports: [
     MongooseModule.forFeature(
       [{ name: Link.name, schema: LinkSchema }],
-      'link',
+      'manito',
     ),
   ],
   providers: [
