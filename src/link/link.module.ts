@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Link, LinkSchema } from './schemas/link.schema';
+import { Link, LinkSchema } from './schema/link.schema';
+import { LinkController } from './link.controller';
+import { LinkService } from './link.service';
 
 @Module({
   imports: [
@@ -9,5 +11,7 @@ import { Link, LinkSchema } from './schemas/link.schema';
       'link',
     ),
   ],
+  providers: [LinkService],
+  controllers: [LinkController],
 })
 export class LinkModule {}
