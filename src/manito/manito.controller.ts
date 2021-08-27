@@ -6,17 +6,14 @@ export class ManitoController {
   constructor(@Inject('LinkService') private linkService: LinkService) {}
   @Post()
   async createProgram(
-    @Body('start') start: string,
-    @Body('end') end: string,
-  ): Promise<{ linkId: string }> {
-    const linkInfo = new Map<string, string>(
-      Object.entries({
-        start,
-        end,
-      }),
-    );
-    console.log(`start : ${start}, end : ${end}`);
-    const linkId = await this.linkService.create(linkInfo);
-    return { linkId };
+    @Body() programInfo: Map<string, string>,
+  ): Promise<{ adminLinkId: string; linkId: string }> {
+    programInfo['type'] = 'admin';
+    const adminLinkId = await this.linkService.create(programInfo);
+
+    programInfo['type'] = 'participant';
+    const linkId = await this.linkService.create(programInfo);
+
+    return { adminLinkId, linkId };
   }
 }
