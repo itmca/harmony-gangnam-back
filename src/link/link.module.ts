@@ -18,5 +18,11 @@ import { LinkServiceImpl } from './link.service';
     },
   ],
   controllers: [LinkController],
+  exports: [
+    {
+      provide: 'LinkService',
+      useClass: LinkServiceImpl,
+    },
+  ],
 })
 export class LinkModule {}
