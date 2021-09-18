@@ -3,10 +3,12 @@ import { Document, Types } from 'mongoose';
 
 export type LinkDocument = Link & Document;
 
+export type LinkDetailValueType = string | Date;
+
 @Schema()
 export class Link {
   @Prop()
-  info: Types.Map<string>;
+  details: Types.Map<LinkDetailValueType>;
 }
 
 export const LinkSchema = SchemaFactory.createForClass(Link);

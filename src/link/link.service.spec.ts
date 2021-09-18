@@ -1,14 +1,20 @@
 import { MongooseModule } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Link, LinkSchema } from './schema/link.schema';
-import { LinkService } from './link.service';
+
+import { LinkService, LinkServiceImpl } from './link.service';
+import { Link, LinkDetailValueType, LinkSchema } from './schema/link.schema';
 
 describe('LinkService', () => {
   let service: LinkService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [LinkService],
+      providers: [
+        {
+          provide: 'LinkService',
+          useClass: LinkServiceImpl,
+        },
+      ],
       imports: [
         MongooseModule.forRoot('mongodb://localhost/link', {
           connectionName: 'link',
@@ -20,15 +26,13 @@ describe('LinkService', () => {
       ],
     }).compile();
 
-    service = module.get<LinkService>(LinkService);
+    service = module.get<LinkService>('LinkService');
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
-
-    service.create({
-      name: 'test',
-    });
+    const linkDetail = new Map<string, LinkDetailValueType>();
+    service.create(linkDetail);
 
     jest.useFakeTimers();
   });
